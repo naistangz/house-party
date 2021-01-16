@@ -17,7 +17,9 @@ Technologies used:
 - [x] Python 
 - [x] Javascript
 - [x] HTML
-- [x] CSS
+- [x] CSSf
 - [x] Spotify API
 - [x] Heroku
 
+--- 
+Click [here]() to check out the house-party clone! :yum:
