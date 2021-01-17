@@ -23,3 +23,4 @@ Technologies used:
 
 --- 
 Click [here](https://house-partyy.herokuapp.com/) to check out the house-party clone! :yum:
+<img src="https://placeit.net/ef06d7b70e0389" alt="mock_up_house_party">
