@@ -36,8 +36,8 @@ export default class CreateRoomPage extends Component {
     this.handleUpdateButtonPressed = this.handleUpdateButtonPressed.bind(this);
   }
 
-// Gets value from text field and adds to votesToSkip
-// Target property of the event
+  // Gets value from text field and adds to votesToSkip
+  // Target property of the event
   handleVotesChange(e) {
     this.setState({
       votesToSkip: e.target.value,
@@ -53,8 +53,11 @@ export default class CreateRoomPage extends Component {
   handleRoomButtonPressed() {
     const requestOptions = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+
       body: JSON.stringify({
         votes_to_skip: this.state.votesToSkip,
         guest_can_pause: this.state.guestCanPause,
@@ -63,10 +66,13 @@ export default class CreateRoomPage extends Component {
 
     // Once we receive a response, then jsonify response
     fetch("/api/create-room", requestOptions)
-      .then((response) => response.json())
-      .then((data) => this.props.history.push("/room/" + data.code));
-  }
-
+      .then(response => {
+        console.log(response);
+        return response.json();
+      }).then(data => {
+        console.log(data);
+        return this.props.history.push("/room/" + data.code);
+  });
 
   handleUpdateButtonPressed() {
     const requestOptions = {
@@ -95,7 +101,7 @@ export default class CreateRoomPage extends Component {
   }
 
   renderCreateButtons() {
-    return(
+    return (
       <Grid container spacing={1}>
         <Grid item xs={12} align="center">
           <Button
@@ -112,7 +118,7 @@ export default class CreateRoomPage extends Component {
           </Button>
         </Grid>
       </Grid>
-    );  
+    );
   }
 
   renderUpdateButtons() {
@@ -135,28 +141,30 @@ export default class CreateRoomPage extends Component {
     return (
       <Grid container spacing={1}>
         <Grid item xs={12} align="center">
-          <Collapse 
-          in={this.state.errorMessage != "" || this.state.successMessage != ""}
+          <Collapse
+            in={
+              this.state.errorMessage != "" || this.state.successMessage != ""
+            }
           >
             {this.state.successMessage != "" ? (
-            <Alert 
-              severity="success" 
-              onClose={() => {
-                this.setState({successMessage: "" });
-            }}
-            >
-              {this.state.successMessage}
-            </Alert>
-              ) : (
-            <Alert 
-              severity="error"
-              onClose={() => {
-                this.setState({errorMessage: ""});
-              }}
+              <Alert
+                severity="success"
+                onClose={() => {
+                  this.setState({ successMessage: "" });
+                }}
+              >
+                {this.state.successMessage}
+              </Alert>
+            ) : (
+              <Alert
+                severity="error"
+                onClose={() => {
+                  this.setState({ errorMessage: "" });
+                }}
               >
                 {this.state.errorMessage}
-            </Alert>
-              )}
+              </Alert>
+            )}
           </Collapse>
         </Grid>
         <Grid item xs={12} align="center">
@@ -206,9 +214,9 @@ export default class CreateRoomPage extends Component {
             </FormHelperText>
           </FormControl>
         </Grid>
-        {this.props.update 
-        ? this.renderUpdateButtons() 
-        : this.renderCreateButtons()}
+        {this.props.update
+          ? this.renderUpdateButtons()
+          : this.renderCreateButtons()}
       </Grid>
     );
   }

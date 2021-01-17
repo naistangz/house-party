@@ -13,11 +13,11 @@ export default function Info(props) {
   const [page, setPage] = useState(pages.JOIN);
 
   function joinInfo() {
-    return "Join Page";
+    return "House Party allows you to join a virtual room using a generated code and play music";
   }
 
   function createInfo() {
-    return "Create Page";
+    return "Click on create a room which will redirect you to the spotify login page and allow you to play music";
   }
 
   useEffect(() => {

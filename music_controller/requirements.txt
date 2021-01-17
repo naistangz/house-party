@@ -1,3 +1,7 @@
 django
-gunicorn
+gunicorn==19.9.0
 django-heroku
+python-decouple==3.4
+djangorestframework
+requests
+psycopg2>=2.6.1

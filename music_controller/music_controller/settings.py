@@ -1,7 +1,8 @@
 import os
 import json
-import dotenv
+# import dotenv
 from decouple import config
+import django_heroku
 """
 Django settings for music_controller project.
 
@@ -22,9 +23,9 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-dotenv_file = os.path.join(BASE_DIR, ".env")
-if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
+# dotenv_file = os.path.join(BASE_DIR, ".env")
+# if os.path.isfile(dotenv_file):
+#     dotenv.load_dotenv(dotenv_file)
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -33,18 +34,23 @@ if os.path.isfile(dotenv_file):
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config("SECRET_KEY")
+# SECRET_KEY = '^cds9ft3=_ewo&235j2+!^u($clxetx7l18%xux5tnv1x!ap*e'
 # SECRET_KEY = os.environ['SECRET_KEY']
 
 # SPOTIFY CREDENTIALS
+# CLIENT_ID = config("CLIENT_ID")
 CLIENT_ID = config("CLIENT_ID")
 CLIENT_SECRET = config("CLIENT_SECRET")
-REDIRECT_URI = ""
+REDIRECT_URI = ['http://127.0.0.1:8000/spotify/redirect',
+                'https://house-partyy.herokuapp.com/spotify/redirect']
+# REDIRECT_URI = 'https://house-partyy.herokuapp.com/spotify/redirect'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0', '192.168.0.39',
-                 'localhost', '94.1.231.214', '127.0.0.1']
+                 'localhost', '94.1.231.214', '127.0.0.1', '.heroku.com', 'https://house-partyy.herokuapp.com']
 
 
 # Application definition
@@ -142,3 +148,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+django_heroku.settings(locals())
