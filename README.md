@@ -22,7 +22,7 @@ Technologies used:
 - [x] Heroku
 
 --- 
-Click [here](https://house-partyy.herokuapp.com/) to check out the house-party clone! :yum:
+## Click [here](https://house-partyy.herokuapp.com/) to check out the house-party clone! :yum:
 
 <img src="houseparty_mockup.jpg" alt="mock_up_house_party">
 
